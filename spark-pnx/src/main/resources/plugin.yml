@@ -3,7 +3,7 @@ version: ${pluginVersion}
 description: ${pluginDescription}
 author: Luck
 website: https://spark.lucko.me/
-main: me.lucko.spark.nukkit.PNXSparkPlugin
+main: me.lucko.spark.pnx.PNXSparkPlugin
 api: 2.0.0
 commands:
   spark:
