@@ -1,0 +1,76 @@
+plugins {
+    id 'com.gradleup.shadow' version '8.3.0'
+    id 'maven-publish'
+}
+
+dependencies {
+    implementation "me.lucko:spark-common:${project.baseVersion}-SNAPSHOT"
+    compileOnly('org.powernukkitx:server:2.0.0-SNAPSHOT') {
+        exclude group: 'org.cloudburstmc.netty', module: 'netty-transport-raknet'
+    }
+}
+
+repositories {
+    maven { url 'https://repo.powernukkitx.org/releases/' }
+}
+
+processResources {
+    from(sourceSets.main.resources.srcDirs) {
+        expand (
+                'pluginVersion': project.pluginVersion,
+                'pluginDescription': project.pluginDescription
+        )
+        include 'plugin.yml'
+    }
+}
+
+shadowJar {
+    archiveFileName = "spark-${project.pluginVersion}-nukkit.jar"
+
+    relocate 'net.kyori.adventure', 'me.lucko.spark.lib.adventure'
+    relocate 'net.kyori.examination', 'me.lucko.spark.lib.adventure.examination'
+    relocate 'net.kyori.option', 'me.lucko.spark.lib.adventure.option'
+    relocate 'net.bytebuddy', 'me.lucko.spark.lib.bytebuddy'
+    relocate 'com.google.protobuf', 'me.lucko.spark.lib.protobuf'
+    relocate 'org.objectweb.asm', 'me.lucko.spark.lib.asm'
+    relocate 'one.profiler', 'me.lucko.spark.lib.asyncprofiler'
+    relocate 'me.lucko.bytesocks.client', 'me.lucko.spark.lib.bytesocks'
+    relocate 'org.java_websocket', 'me.lucko.spark.lib.bytesocks.ws'
+
+    project.applyExcludes(delegate)
+}
+
+artifacts {
+    archives shadowJar
+    shadow shadowJar
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            groupId = project.group.toString()
+            artifactId = project.name
+            version = project.version.toString()
+
+            if (tasks.findByName('shadowJar') != null) {
+                artifact(tasks.named('shadowJar'))
+            }
+        }
+    }
+
+    repositories {
+        maven {
+            name = "pnx"
+            url = uri("https://repo.powernukkitx.org/releases")
+            credentials {
+                username = providers.gradleProperty("pnxUsername")
+                        .orElse(providers.environmentVariable("PNX_REPO_USERNAME"))
+                        .orNull
+                password = providers.gradleProperty("pnxPassword")
+                        .orElse(providers.environmentVariable("PNX_REPO_PASSWORD"))
+                        .orNull
+            }
+        }
+    }
+}
+
