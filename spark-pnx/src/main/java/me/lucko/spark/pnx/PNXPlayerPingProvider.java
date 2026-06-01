@@ -38,7 +38,7 @@ public class PNXPlayerPingProvider implements PlayerPingProvider {
     public Map<String, Integer> poll() {
         ImmutableMap.Builder<String, Integer> builder = ImmutableMap.builder();
         for (Player player : this.server.getOnlinePlayers().values()) {
-            builder.put(player.getName(), player.getPing());
+            builder.put(player.getName(), Math.toIntExact(player.getPing()));
         }
         return builder.build();
     }
