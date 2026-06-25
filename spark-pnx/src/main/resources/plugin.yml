@@ -4,7 +4,7 @@ description: ${pluginDescription}
 author: Luck
 website: https://spark.lucko.me/
 main: me.lucko.spark.pnx.PNXSparkPlugin
-api: 2.0.0
+api: 3.0.0
 commands:
   spark:
     description: Main plugin command
