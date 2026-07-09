@@ -20,7 +20,7 @@
 
 package me.lucko.spark.pnx;
 
-import cn.nukkit.plugin.PluginClassLoader;
+import org.powernukkitx.plugin.PluginClassLoader;
 import me.lucko.spark.common.sampler.source.ClassSourceLookup;
 
 import java.io.IOException;

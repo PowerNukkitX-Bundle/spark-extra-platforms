@@ -20,7 +20,7 @@
 
 package me.lucko.spark.pnx;
 
-import cn.nukkit.Server;
+import org.powernukkitx.Server;
 import me.lucko.spark.common.platform.PlatformInfo;
 
 public class PNXPlatformInfo implements PlatformInfo {

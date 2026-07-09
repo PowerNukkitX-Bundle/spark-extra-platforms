@@ -5,7 +5,7 @@ plugins {
 
 dependencies {
     implementation "me.lucko:spark-common:${project.baseVersion}-SNAPSHOT"
-    compileOnly('org.powernukkitx:server:b-migration-SNAPSHOT') {
+    compileOnly('org.powernukkitx:server:nightly-SNAPSHOT') {
         exclude group: 'org.cloudburstmc.netty', module: 'netty-transport-raknet'
     }
 }

@@ -20,8 +20,8 @@
 
 package me.lucko.spark.pnx;
 
-import cn.nukkit.Player;
-import cn.nukkit.Server;
+import org.powernukkitx.Player;
+import org.powernukkitx.Server;
 import com.google.common.collect.ImmutableMap;
 import me.lucko.spark.common.monitor.ping.PlayerPingProvider;
 

@@ -20,11 +20,11 @@
 
 package me.lucko.spark.pnx;
 
-import cn.nukkit.command.Command;
-import cn.nukkit.command.CommandSender;
-import cn.nukkit.plugin.Plugin;
-import cn.nukkit.plugin.PluginBase;
-import cn.nukkit.plugin.service.ServicePriority;
+import org.powernukkitx.command.Command;
+import org.powernukkitx.command.CommandSender;
+import org.powernukkitx.plugin.Plugin;
+import org.powernukkitx.plugin.PluginBase;
+import org.powernukkitx.plugin.service.ServicePriority;
 import me.lucko.spark.api.Spark;
 import me.lucko.spark.common.SparkPlatform;
 import me.lucko.spark.common.SparkPlugin;
